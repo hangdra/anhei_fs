@@ -343,7 +343,7 @@ function hot_key_release(hotKey) --热键释放
 end
 
 function hot_key_PressAndRelease(hotKey) --热键按一次
-	--------OutputLogMessage("________here u are cast_spell(skill " .. skill)
+	--OutputLogMessage("________here u are cast_spell(skill " .. hotKey  .."\n")
 	if hotKey == "Mouse_M1" then
 		PressKey(Mouse_M1_skill_need_pre_and_after_hotkey)
 		PressAndReleaseMouseButton(1)
@@ -455,9 +455,11 @@ function keep_cast_skill_to_time(end_time) --持续释放技能
 				execute_result = cast_spell_in_array(keep_cast_array)
 				cast_times = cast_times - 1
 			end
-			Sleep_to(end_time)
+			if not Sleep_to(end_time) then
+				return false
+			end
 			local now_time = GetRunningTime()
-			OutputLogMessage("________function keep_cast_skill_to_time  end TARGET EN %d  real end %d\n",end_time,now_time)
+			OutputLogMessage("________function keep_cast_skill_to_time  end TARGET EN %d  real end %d  \n",end_time,now_time)
 			return execute_result
 		end
 		return true
@@ -614,7 +616,9 @@ function engage()
 		local now_time = GetRunningTime()
 		repeat_continue = cast_spell_function(loop_info_now)
 		loop_times = loop_times + 1
-		OutputLogMessage("________function engage ：cast repeat tims %d  TIME PASSED %.1f s1 times : %d s2 times %d\n ",loop_times,(now_time-begin_t)/16/1000,_suit_times[1],_suit_times[2])
+		--OutputLogMessage("________function engage ：continue_key %s\n ",type(continue_key))
+
+		--OutputLogMessage("________function engage ：cast repeat tims %d  TIME PASSED %.1f s1 times : %d s2 times %d\n ",loop_times,(now_time-begin_t)/16/1000,_suit_times[1],_suit_times[2])
     until (not repeat_continue)
 	continue_key = nil
 	return true
@@ -643,24 +647,31 @@ function cast_spell_function(loop_info)
 		if current_loop_time < spells_info[suit_spells].window_info[1] then
 			--OutputLogMessage("________function cast_spell_function  current_loop_time < spells_info[suit_spells].window_info[2]\n")
 			if not keep_cast_skill_to_time(spells_info[suit_spells].window_info[1] - current_loop_time + temp_engage_now ) then
-				continue_key = nil
+				--OutputLogMessage("________NIL   1111\n")
+				--continue_key = nil
 				return false
 			end
 		end
 	else
-		OutputLogMessage("________function cast_spell_function  else mode NOW %d , sleep time %d\n",temp_engage_now,loop_info.total_info.total_loop_time_ms - current_loop_time + spells_info[suit_spells].window_info[1])
+		--OutputLogMessage("________function cast_spell_function  else mode NOW %d , sleep time %d\n",temp_engage_now,loop_info.total_info.total_loop_time_ms - current_loop_time + spells_info[suit_spells].window_info[1])
 		if not keep_cast_skill_to_time( loop_info.total_info.total_loop_time_ms - current_loop_time + spells_info[suit_spells].window_info[1] + temp_engage_now  ) then
-				continue_key = nil
+				--OutputLogMessage("________NIL   22222\n")
+				--continue_key = nil
 				return false
 		end
 	end
-	--OutputLogMessage("________function cast_spell_function  casting spell_array\n")
+	OutputLogMessage("________function cast_spell_function  casting spell_array\n")
 	if not cast_spell_in_array(spells_info[suit_spells].spell_array) then
-		continue_key = nil
+		--OutputLogMessage("________NIL   3333\n")
+		--continue_key = nil
 		return false
 	end
 	OutputLogMessage("________function SELLP TIME %d\n",spells_info[suit_spells].ahead_next_funtion_time)
-	Sleep_current(spells_info[suit_spells].ahead_next_funtion_time)
+	if not Sleep_current(spells_info[suit_spells].ahead_next_funtion_time) then
+		--OutputLogMessage("________NIL   44444\n")
+		--continue_key = nil
+		return false
+	end
 	return true
 end
 
@@ -842,7 +853,7 @@ function cast_spell_in_array(spell_array)
 			end
 			------OutputLogMessage("function cast_spell_in_array: skill_cast cost time %.1f\n",spell_info.cost_time_ms)
 			if not cast_spell(skill_cast,cast_time,frame_percent_channeling) then
-				------OutputLogMessage("function cast_spell_in_array: cast_spell false\n")
+				OutputLogMessage("function cast_spell_in_array: cast_spell false\n")
 				_cast_spell_in_array = false
 				return false
 			end
@@ -854,6 +865,7 @@ function cast_spell_in_array(spell_array)
 		_cast_spell_in_array = false
 		return true
 	end
+	OutputLogMessage("function cast_spell_in_array:end false\n")
 	return false
 end
 

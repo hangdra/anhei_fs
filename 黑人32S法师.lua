@@ -14,8 +14,8 @@ macro_aim_element_fire = {"G_PRESSED" , 3} ---F3 对焦火元素 结束
 macro_aim_element_strom = {"G_PRESSED" , 4} ---F4 对焦电元素 结束
 
  clear_log_hotKey = {"G_PRESSED",5}--G5(F5)刷新日志
- skills_and_hotkey={ys="1",hd="2",ylb="3",hr="4",dx="Mouse_M1",bssx="Mouse_M2",hr_sdcj ="1" , hr_sddj = "Mouse_M1",hr_kjgb = "Mouse_M2"}
- skills_and_cds = {hr = 100 * 1000 ,hd = 12 * 1000}--技能默认CD（如果符文影响CD 填入符文影响后CD 不填写萃取CD） 无关技能可以不填入
+ skills_and_hotkey={ys="1",hd="2",ylb="3",hr="4",dx="Mouse_M1",bssx="Mouse_M2",hr_sdcj	="1" , hr_sddj = "Mouse_M1",hr_kjgb = "Mouse_M2"}
+ skills_and_cds = {hr = 100 * 1000 , hd = 12 * 1000}--技能默认CD（如果符文影响CD 填入符文影响后CD 不填写萃取CD） 无关技能可以不填入
  
 --技能与快捷键绑定 (如果使用其他技能引导，请查询下方skills中相关name 对应的名字 如奥术洪流_静电放射 这里要改成 ashl_jdfs="Mouse_M2" ，如果使用的技能不在下表中请随意起名字，但是会导致引导最小帧数有可能会变长
 --[[
@@ -23,46 +23,49 @@ ys=陨石,hd=黑洞,ylb=源力波hr=黑人,dx=电刑,bssx=引导技能(冰霜射
 --]]
 --技能从左往右顺序
 
- hr_last_time_after_return_ms = 20 * 1000 --法尊帽子 提供黑人结束后持续时间（请根据自己的装备填写修改 20 为自己的持续时间 1000不用动）
- cd_reduce=0.5386 --冷却时间缩短效果 请输入你的冷却缩短
- gem_xunjiegouyu= false ---是否配有迅捷勾玉 true - 是  false -否
- force_full_xunjiegouyu = true -- 强制确认每次使用宏身上都叠有满层的勾玉BUFF效果 true-是的 初始15层勾玉（buff） false-只执行程序置信的勾玉效果（执行过程中触发的勾玉,初始buff层数为0）
+	hr_last_time_after_return_ms = 20 * 1000 --法尊帽子 提供黑人结束后持续时间（请根据自己的装备填写修改 20 为自己的持续时间 1000不用动）
+	cd_reduce=0.6260 --冷却时间缩短效果 请输入你的冷却缩短
+	gem_xunjiegouyu=true---是否配有迅捷勾玉 true - 是  false -否
+	force_full_xunjiegouyu = true -- 强制确认每次使用宏身上都叠有满层的勾玉BUFF效果 true-是的 初始15层勾玉（buff） false-只执行程序置信的勾玉效果（执行过程中触发的勾玉,初始buff层数为0）
 
 
 -----macro config（宏设置 ，不要修改以下内容)------------------------
- screen_x_range = {0,65535}
- screen_y_range = {0,65535}
- screen_x_cast_spell_range = {0,65535}
- screen_y_cast_spell_range = {0,55000}
- _max_telport_distance = 18000
- player_position = {32780,30832}
- frame_per_sencond  = 60 --1秒游戏帧数 不要修改此值
- attack_spped_per_sencond_by_weapon = 1.4 --绝命1.4
- attack_speed_bonus = 0.1 -- 巅峰10%
- gem_one_buff_bonus = 0.01 ----勾玉 1 层 0.01 
- max_gem_buff_level = 15
- attack_speed_gem_max_bonus = gem_one_buff_bonus * max_gem_buff_level --勾玉 15层 0.01 
- cool_down_reduce_gem_max_bonus = gem_one_buff_bonus * max_gem_buff_level --勾玉 15层 0.01 
- hr_last_time_ms = 20 * 1000 --黑人持续时间
- hr_cd_ms = 100 * 1000 --黑人技能CD默认时间 100S
+	screen_x_range = {0,65535}
+	screen_y_range = {0,65535}
+	screen_x_cast_spell_range = {0,65535}
+	screen_y_cast_spell_range = {0,55000}
+	_max_telport_distance = 50000
+	player_position = {32755,30422}
+	frame_per_sencond  = 60 --1秒游戏帧数 不要修改此值
+	attack_spped_per_sencond_by_weapon = 1.4 --绝命1.4
+	attack_speed_bonus = 0.1 -- 巅峰10%
+	gem_one_buff_bonus = 0.01 ----勾玉 1 层 0.01 
+	max_gem_buff_level = 15
+	attack_speed_gem_max_bonus = gem_one_buff_bonus * max_gem_buff_level --勾玉 15层 0.01 
+	cool_down_reduce_gem_max_bonus = gem_one_buff_bonus * max_gem_buff_level --勾玉 15层 0.01 
+	hr_last_time_ms	= 20 * 1000 --黑人持续时间
+	hr_cd_ms	= 100 * 1000 --黑人技能CD默认时间 100S
  
  ---元素戒设置
  ---元素戒指 电 奥 冰 火
- _element_end_times = {} --元素戒各元素结束时间
- _element_ring_element = {"冰","火","电","奥"}
- _aim_element_index = 4
- _aim_element = _element_ring_element[_aim_element_index] --陨石最大伤害释放元素
+	_element_end_times	= {} --元素戒各元素结束时间
+	_element_ring_element	= {"冰","火","电","奥"}
+	_aim_element_index	= 4
+	_aim_element	= _element_ring_element[_aim_element_index] --陨石最大伤害释放元素
 
- element_ring_element_num = 4
- element_ring_per_element_ms = 4 * 1000
- element_ring_per_loop_ms = element_ring_element_num * element_ring_per_element_ms
- _big_loop_time_info = {whole_time_ms=element_ring_per_loop_ms,element_wanna_range={element_ring_per_element_ms * 3,element_ring_per_element_ms * 4}}
+	element_ring_element_num	= 4
+	element_ring_per_element_ms	= 4 * 1000
+	element_ring_per_loop_ms	=	element_ring_element_num	*	element_ring_per_element_ms
+	_big_loop_time_info = {whole_time_ms	=	element_ring_per_loop_ms,element_wanna_range={element_ring_per_element_ms	*	(_aim_element_index-1),element_ring_per_element_ms	*	_aim_element_index}}
 
  
- _unvalid_element_ms = 100 --周期内无效时间 防止对元素误差造成 需要技能在指定元素之外释放 MS
- _grap_for_two_round = 200 --一个元素周期内打2次 输出循环 要小于 4000ms - 当前设定毫秒数  1次输出循环 3700 ms 则打2套输出（第二套输出初始时间为此值得1/2 目标元素开始时间）
- msg_grap = 2000 --信息发送间隔 ms
- msg_broadcast_on = true
+	_unvalid_element_ms = 100 --周期内无效时间 防止对元素误差造成 需要技能在指定元素之外释放 MS
+	_grap_for_two_round = 200 --一个元素周期内打2次 输出循环 要小于 4000ms - 当前设定毫秒数  1次输出循环 3700 ms 则打2套输出（第二套输出初始时间为此值得1/2 目标元素开始时间）
+	msg_grap = 2000 --信息发送间隔 ms
+	msg_broadcast_on = false
+	_time_for_walk_to_shenmu	= 1500 --等待神木时间
+	_shenmu_last_time = 7000 --神目持续时间
+ 
 --[[
 修正常数 c (0 < c < 1)，是只和技能有关的常数，且满足 c = n / (n + 1) 的形式，其中 n 为正整数。攻击动画相同的技能，修正系数也是相同的，按照攻击动画，可以将非引导类技能分类（同一技能的不同符文拥有相同的修正常数）：
 
@@ -95,7 +98,7 @@ default_false_channeling={name="非持续施法默认最小帧",frame_fix=defaul
 default_true_channeling={name="持续施法默认最小帧",frame_fix=default_speed_frame_fix,channeling = true}
 }
 
-skills = {
+	skills	= {
 yhzr={name="幽魂之刃",frame_fix=A_class_frame_fix,channeling = false},
 jnbp={name="聚能爆破",frame_fix=A_class_frame_fix,channeling = false},
 dts={name="多头蛇",frame_fix=A_class_frame_fix,channeling = false},
@@ -124,23 +127,27 @@ hr = {name="御法者(黑人)",frame_fix=default_frame_fix,channeling = false },
 hd = {name="黑洞",frame_fix=default_frame_fix,channeling = false}
 }
 
- Mouse_M1_skill_need_pre_and_after_hotkey = force_stand_hotkey ---鼠标左键技能需要（强制站立键）按键预按
- _skill_init_name = {}
- _static_sleep_adjust_ahead_over_milliontime = 2 --释放技能提前松开按键毫秒时间（防止多按1毫秒强制进入下个循环，不建议设为0）
-  _spell_while_idle = true --是否在无技能连招的时候释放其他法术 （保持勾玉 触发贼神等）
- _default_cast_skill_while_idle = skills.bssx
- 
-function act_frame_cast_spell(skill) -- 获取释放技能需要的最少帧数
-	local min_frame = -1
-	local att_now = attacking_speed_per_sencond_now()
-	if skill.channeling then
-		min_frame = math.modf(frame_per_sencond/att_now/skill.frame_fix)
+	Mouse_M1_skill_need_pre_and_after_hotkey	= force_stand_hotkey ---鼠标左键技能需要（强制站立键）按键预按
+	_skill_init_name	= {}
+	_static_sleep_adjust_ahead_over_milliontime	= 2 --释放技能提前松开按键毫秒时间（防止多按1毫秒强制进入下个循环，不建议设为0）
+	_spell_while_idle	=	true--是否在无技能连招的时候释放其他法术 （保持勾玉 触发贼神等）
+	_default_cast_skill_while_idle	= skills.ylb
+	
+function	act_frame_cast_spell(skill) -- 获取释放技能需要的最少帧数
+	if skill ~= nil then
+		local min_frame = -1
+		local att_now = attacking_speed_per_sencond_now()
+		if skill.channeling then
+			min_frame = math.modf(frame_per_sencond/att_now/skill.frame_fix)
+		else
+			min_frame = math.modf(frame_per_sencond/att_now*skill.frame_fix+1)
+		end
+		skill.frame = min_frame
+		--OutputLogMessage("________ act_frame_cast_spell:skill %s MIN frame  %d\n",skill.hotkey,min_frame)
+		return min_frame
 	else
-		min_frame = math.modf(frame_per_sencond/att_now*skill.frame_fix+1)
+		return 0
 	end
-	skill.frame = min_frame
-	------OutputLogMessage("________ act_frame_cast_spell:skill %s MIN frame  %d\n",skill.hotkey,min_frame)
-	return min_frame
 end
 
 function attacking_speed_per_sencond_now ()
@@ -148,9 +155,9 @@ function attacking_speed_per_sencond_now ()
 	return attack_spped_per_sencond_by_weapon*(attack_bonus_all)
 end
 
-function get_gem_gouyu_buff_level() --勾玉buff 层数
+function	get_gem_gouyu_buff_level() --勾玉buff 层数
 	if gem_xunjiegouyu then
-		if force_full_xunjiegouyu then
+		if	force_full_xunjiegouyu	then
 			return max_gem_buff_level
 		else
 			--todo here
@@ -252,7 +259,7 @@ end
 	3 cast_spell_cost_ms(skills.bssx,1,0.05) 释放1次引导冰霜射线，引导到动画全部完成的5%即松开按键(用于使用后续技能黑人享受引导与黑人双加成）
 	3 cast_spell_cost_ms(skills.bssx,2,0.05) 释放2次引导冰霜射线，第一次完全引导，第二次引导到动画全部完成的5%即松开按键（用于使用后续技能黑人享受引导与黑人双加成）
 --]]
-function cast_spell_cost_ms(skill,...) --释放技能  需要占用时间
+function	cast_spell_cost_ms(skill,...) --释放技能  需要占用时间
 	local cast_time = 1 --释放次数
 	local frame_percent_channeling = 1 --提前或延后结束施法时间引导完成度影响因子(0,1]
 	local arg = {...}
@@ -263,7 +270,7 @@ function cast_spell_cost_ms(skill,...) --释放技能  需要占用时间
 			frame_percent_channeling = arg[2]
 		end
 	end
-	channeling_time = act_frame_cast_spell(skill)*_per_frame_ms*(frame_percent_channeling+cast_time-1) --- 引导总持续时间
+	channeling_time =	act_frame_cast_spell(skill)*_per_frame_ms*(frame_percent_channeling+cast_time-1) --- 引导总持续时间
 	return channeling_time
 end
 
@@ -306,14 +313,123 @@ function cast_spell(skill,cast_time,frame_percent_channeling) --释放技能
 end
 
 
+function cast_spell_in_array(spell_array)
+		for index,spell_info  in ipairs(spell_array) do
+			if spell_info.pre_function ~= nil then
+				OutputLogMessage(" function cast_spell_in_array : type(pre_function)  %s  \n",type(spell_info.pre_function))
+				if not spell_info.pre_function() then
+					OutputLogMessage("function cast_spell_in_array: pre_function false\n")
+					_cast_spell_in_array = false
+					return false
+				end
+			end
+			local	skill_cast	= spell_info.skill_cast
+			if skill_cast ~= nil then
+				local	cast_time	= 1
+				if spell_info.cast_time~=nil then
+					cast_time = spell_info.cast_time
+				end
+				local frame_percent_channeling = 1.0
+				if spell_info.frame_percent_channeling~=nil then
+					frame_percent_channeling = spell_info.frame_percent_channeling
+				end
+				------OutputLogMessage("function cast_spell_in_array: skill_cast cost time %.1f\n",spell_info.cost_time_ms)
+				if not cast_spell(skill_cast,cast_time,frame_percent_channeling) then
+					OutputLogMessage("function cast_spell_in_array: cast_spell false\n")
+					return false
+				end
+			end
+			if spell_info.post_function ~= nil then
+				if not spell_info.post_function() then
+					return false
+				end
+			end
+			------OutputLogMessage("function cast_spell_in_array: cast_spell true\n")
+		end
+		return true
+end
+
+--[[
+	陨石输出基本循环  
+	无勾玉情况下 一套需要4500-4600 ms 时间 即4.5-4.6秒 详细时间为 4.53-4.56范围内
+	满勾玉 4.04 -4.06
+--]]
+function cast_spell_in_array_cost_time(spell_array)
+	local cost_time_all = 0
+	local not_in_element_cost = 0 
+	local element_cost = 0
+	for index,spell_info in ipairs(spell_array) do
+		local	skill_cast	= spell_info.skill_cast
+		local	cast_time = 1
+		if spell_info.cast_time~=nil then
+			cast_time = spell_info.cast_time
+		end
+		local frame_percent_channeling = 1.0
+		if spell_info.frame_percent_channeling~=nil then
+			frame_percent_channeling = spell_info.frame_percent_channeling
+		end
+		local	cost_time	=	cast_spell_cost_ms(skill_cast,cast_time,frame_percent_channeling)
+		cost_time_all = cost_time_all + cost_time
+		if (spell_info.in_element ~= nil and spell_info.in_element) then
+			----OutputLogMessage("function cast_spell_in_array_cost_time: skill_cast.in_element\n")
+			element_cost = element_cost + cost_time
+		else
+			not_in_element_cost = not_in_element_cost + cost_time
+		end
+		----OutputLogMessage("function cast_spell_in_array_cost_time:skill name  %s , cast time %d ,percent %.2f cost time %.1f cost_time_all %.1f\n",skill_cast.name,cast_time,frame_percent_channeling,cost_time,cost_time_all)
+		--print (string.format("function cast_spell_in_array_cost_time:skill name  %s , cast time %d ,percent %.2f cost time %.1f cost_time_all %.1f\n",skill_cast.name,cast_time,frame_percent_channeling,cost_time,cost_time_all))
+		
+	end
+	----OutputLogMessage("function cast_spell_in_array_cost_time: cost time all %.1f\n",cost_time_all)
+	--print (string.format("function cast_spell_in_array_cost_time: cost time all %.1f\n",cost_time_all))
+	return {cost_time_all,not_in_element_cost,element_cost}
+end
+
+--[[
+	function window_grap 计算 窗口时间
+	@ParamInfo
+		big_loop_time_info  循环 信息  
+			exp: 
+			{
+				whole_time_ms=16*1000,--循环总时间
+				element_wanna_range={12*1000,16*1000}--需要元素时间范围窗口
+			}
+		spell_cost_ms_info --输出招式 时间 
+			exp:
+			{
+				total_time_ms=3893,--输出总时间MS
+				not_in_element_cost = 3570, --非元素周期内招式时间ms
+				in_element_cost = 323 -- 元素周期内招式时间 ms
+			}
+		mini_grap_before_element_end_ms 需要元素时间范围窗口 最后无效时间（ms） --避免对元素误差导致最后元素周期内招式脱离元素周期释放 exp ：100 
+		
+	
+	@Return value
+		type : table
+		exp: {1200,1400}
+		des: {可进入的最早时间，可进入的最晚时间}
+--]]
+function	window_grap(big_loop_time_info,spell_cost_ms_info,mini_grap_before_element_end_ms)--计算时间窗口
+	local early_time = big_loop_time_info.element_wanna_range[1]	+ mini_grap_before_element_end_ms +	spell_cost_ms_info.in_element_cost -	spell_cost_ms_info.total_time_ms
+	local end_time = big_loop_time_info.element_wanna_range[2]	- mini_grap_before_element_end_ms	-	spell_cost_ms_info.total_time_ms
+	print (string.format("window grap : {%d , %d} \n ",early_time,end_time))
+	return {early_time,end_time}
+end
+
+function	window_grap_by_spell_list(cast_spell_list)--计算时间窗口
+	local	spell_list_cast_time_info = cast_spell_in_array_cost_time(cast_spell_list)
+	local	cost_ms_info_table	= {total_time_ms=spell_list_cast_time_info[1],not_in_element_cost = spell_list_cast_time_info[2],in_element_cost = spell_list_cast_time_info[3]}
+	return window_grap(_big_loop_time_info,cost_ms_info_table,_unvalid_element_ms)
+end
+
 function skill_press(skill) --释放技能 un used
 	hot_key_press(skill.hotkey)
-	skill._last_hit_time = (GetRunningTime())
+	skill._last_hit_time	= (GetRunningTime())
 end
 
 function skill_release(skill) --释放技能 un used
 	hot_key_release(skill.hotkey)
-	skill._last_hit_time = (GetRunningTime())
+	skill._last_hit_time	= (GetRunningTime())
 end
 
 function hot_key_press(hotKey) --热键按下
@@ -341,7 +457,7 @@ function hot_key_release(hotKey) --热键释放
 end
 
 function hot_key_PressAndRelease(hotKey) --热键按一次
-	--------OutputLogMessage("________here u are cast_spell(skill " .. skill)
+	--OutputLogMessage("________here u are cast_spell(skill " .. hotKey  .."\n")
 	if hotKey == "Mouse_M1" then
 		PressKey(Mouse_M1_skill_need_pre_and_after_hotkey)
 		PressAndReleaseMouseButton(1)
@@ -353,9 +469,9 @@ function hot_key_PressAndRelease(hotKey) --热键按一次
 	end
 end
 
-function getCd(skill) --获取目标次序技能cd剩余及cd减缩百分比
+function	getCd(skill) --获取目标次序技能cd剩余及cd减缩百分比
 	if not skill.cd_left then
-		reduce_left_percent = (1-cd_reduce)*(1-gem_one_buff_bonus * get_gem_gouyu_buff_level())
+		reduce_left_percent = (1-cd_reduce)*(1-gem_one_buff_bonus *	get_gem_gouyu_buff_level())
 		reduce_percent = 1 - reduce_left_percent
 		cd_left = skill.cd * reduce_left_percent
 		------OutputLogMessage("________cd %s: %f  leftMs:%f\n", skill.name ,reduce_percent,cd_left)
@@ -382,7 +498,7 @@ function engage_loop_time_use_element_ring_circle_time_with_special_spell_array(
 	return special_spell_array_minimum_loop_take_element_ring_loop_times
 end
 
-function loop_max_cd() --获取输出循环最大CD
+function	loop_max_cd() --获取输出循环最大CD
 	local max_cd = 0
 	for i,v in pairs(skills) do
 		if skills[i].cd_left~=nil then
@@ -394,92 +510,13 @@ function loop_max_cd() --获取输出循环最大CD
 	return max_cd
 end
 
-function engage_loop_time_use_element_ring_circle_time() --输出循环 最少需要几次元素戒循环完成一次（如果输出循环中的技能CD 大于16S 小于32S 则 2个元素戒循环才有一次真正输出
+function	engage_loop_time_use_element_ring_circle_time() --输出循环 最少需要几次元素戒循环完成一次（如果输出循环中的技能CD 大于16S 小于32S 则 2个元素戒循环才有一次真正输出
 	local max_cd = loop_max_cd()
 	_minimum_loop_take_element_ring_loop_times = math.ceil(max_cd / element_ring_per_loop_ms) --输出循环最大CD技能剩余CD占用元素戒 元素循环几轮
-	return _minimum_loop_take_element_ring_loop_times
+	return	_minimum_loop_take_element_ring_loop_times
 end
 
 
-function engage_force_use_element_ring_big(cast_array)
-	loop_times = 0
-	_engage_force_use_element_ring = false
-	continue_key = "capslock"
-	local repeat_continue = true
-	repeat
-		repeat_continue = engage_force_use_element_ring(cast_array)
-		loop_times = loop_times + 1
-		--OutputLogMessage("________function engage_force_use_element_ring_big ：cast repeat tims %d \n ",loop_times)
-    until (not repeat_continue)
-	_engage_force_use_element_ring = false
-	continue_key = nil
-	return true
-end
-
-function test_loop()
-	local cast_array={
-	{skill_cast=skills.hd},
-	{skill_cast=skills.ylb},
-	{skill_cast=skills.dx,cast_time = 3}, -- 第一次 需要叠满5层buff
-	{skill_cast=skills.ys},
-	{skill_cast=skills.dx,cast_time = 2},
-	{skill_cast=skills.bssx,in_element = true}
-	}
-	
-	return cast_array
-
-end
---________loop_with_hr cast_array_cost_time_ms 4249.1 ,3570.0 ,679.1 
-function loop_with_hr(in_element,first_time) --黑人技能输出循环 in_element 是否需要在元素戒指定输出循环内
-	local dx_time = 3
-	if first_time then
-		dx_time = 5
-	end
-	local cast_array={
-	{skill_cast=skills.hd},
-	{skill_cast=skills.ylb},
-	{skill_cast=skills.dx,cast_time = dx_time}, -- 第一次 需要叠满5层buff
-	{skill_cast=skills.ys},
-	{skill_cast=skills.dx,cast_time = 2},
-	{skill_cast=skills.bssx,in_element = in_element,frame_percent_channeling=0.05},
-	{skill_cast=skills.hr,in_element = in_element}
-	}
-	
-	return cast_array
-end
-
---________loop_after_hr cast_array_cost_time_ms 7106.0 ,3553.0 ,3553.0  
---________loop_after_hr cast_array_cost_time_ms 3893.0 ,3570.0 ,323.0  
-function loop_after_hr()  ---黑人结束后输出循环 3893 ,3570 ,323 
-	local cast_array={
-	{skill_cast=skills.hd},
-	{skill_cast=skills.ylb},
-	{skill_cast=skills.dx,cast_time = 3}, -- 第一次 需要叠满5层buff
-	{skill_cast=skills.ys},
-	{skill_cast=skills.dx,cast_time = 2},
-	{skill_cast=skills.bssx,cast_time = 1, in_element = true},--如果只是为了下路陨石 cast_time 为1 就好  但是会有引导陨石 故而要长一些 等引导陨石落地
-	{skill_cast=skills.ylb, in_element = true},
-	{skill_cast=skills.dx,cast_time = 3, in_element = true}, -- 第一次 需要叠满5层buff
-	{skill_cast=skills.ys, in_element = true},
-	{skill_cast=skills.dx,cast_time = 2, in_element = true},
-	{skill_cast=skills.bssx,cast_time = 1, in_element = true, in_element = true}
-	}
-	
-	return cast_array
-
-end
-
----________function loop_after_hr_create_shenmu cast_array_cost_time_ms 3230.0 ,3230.0 ,0.0  
-function loop_after_hr_create_shenmu() 
-	local cast_array={--without hd  shenmu has 6S last time and hd cd is 5.6S not possiable
-	{skill_cast=skills.ylb},
-	{skill_cast=skills.dx,cast_time = 3}, 
-	{skill_cast=skills.ys},
-	{skill_cast=skills.dx,cast_time = 2},
-	{skill_cast=skills.bssx,cast_time = 1}--如果只是为了下路陨石 cast_time 为1 就好  但是会有引导陨石 故而要长一些 等引导陨石落地
-	}
-	return cast_array
-end
 
 
 function check_cds (cast_array,now_time)
@@ -501,6 +538,7 @@ function try_msg(msg_table)
 		PressAndReleaseKey("p")
 		PressAndReleaseKey(0x39)
 		for i=1,#arg do
+			OutputLogMessage("________function try_msg ：%s \n ",arg[i])
 			for j=1,#arg[i] do 
 				PressAndReleaseKey(string.sub(arg[i],j,j))
 			end
@@ -515,22 +553,41 @@ function try_msg(msg_table)
 end
 
 
-function keep_cast_skill_to_time(end_time) --持续释放技能
-	if _spell_while_idle then
+function keep_cast_skill_to_time(end_time,keep_cast_skill) --持续释放技能
+	if	_spell_while_idle or keep_cast_skill ~= ni then
+		OutputLogMessage("________function keep_cast_skill_to_time\n")
 		local now_time = GetRunningTime()
-		try_msg({"next","attack","coming","in",tostring(math.ceil((end_time - now_time)/1000)),"seconds"})
+		--try_msg({"next","attack","coming","in",tostring(math.ceil((end_time - now_time)/1000)),"seconds"})
 		local target_end = end_time
 		if now_time < end_time then
-			local skill_time_cost = cast_spell_cost_ms(_default_cast_skill_while_idle)
-			local cast_times = math.floor((end_time - now_time) / skill_time_cost) --math.floor(30.1) = 30 math.ceil(30.1) = 31
-			local cast_array = {{skill_cast=_default_cast_skill_while_idle,cast_time = cast_times}}
-			return cast_spell_in_array(cast_array)
+		
+			local	keep_cast_array	= {{	skill_cast	= _default_cast_skill_while_idle,cast_time = 1}}
+			if keep_cast_skill ~= nil then
+				OutputLogMessage("________function keep_cast_skill %s \n",keep_cast_skill.hotkey)
+				keep_cast_array[1].skill_cast	=	keep_cast_skill
+			end
+			local skill_time_cost = cast_spell_in_array_cost_time(keep_cast_array)
+			local cast_times = math.floor((end_time - now_time) / skill_time_cost[1]) --math.floor(30.1) = 30 math.ceil(30.1) = 31
+			OutputLogMessage("________function keep_cast_skill_to_time  cast_times %d \n", cast_times)
+			local execute_result = true
+			while cast_times > 0 and  execute_result do
+				execute_result = cast_spell_in_array(keep_cast_array)
+				cast_times = cast_times - 1
+			end
+			if not execute_result then
+				return false
+			end
+			if not Sleep_to(end_time) then
+				return false
+			end
+			local now_time = GetRunningTime()
+			OutputLogMessage("________function keep_cast_skill_to_time  end TARGET EN %d  real end %d  \n",end_time,now_time)
+			return execute_result
 		end
-		Sleep_to(end_time)
+		return true
 	else
 		return Sleep_to_with_msg(end_time)
 	end
-	return true
 end
 
 _default_skill_msg_table={"macro","next","attack","coming","in","-1"}
@@ -583,185 +640,293 @@ function Sleep_to_with_msg(unitl_time)
 	return true
 end
 
-
---[[
-  todo 
-  
-  		--wait until begin
-		--loop_with_hr
-		--sleep 20*1000
-		--loop_after_hr	
-		
---]]
-function hr_lv1(first_time) --初始变身黑人输出时间
-	local loop_hr_1 = loop_with_hr(true,first_time)		
-	local hr_start_spell_list_window = window_grap_by_spell_list(loop_hr_1)
-	local temp_engage_now = GetRunningTime()
-	if not check_cds(loop_hr_1,temp_engage_now) then
-		continue_key = nil
-		return false
+function cast_spell_move_mouse_to(x,y)
+	local xl = x
+	local yl = y
+	if xl < screen_x_cast_spell_range[1] then
+		xl = screen_x_cast_spell_range[1]
 	end
-	local temp_engage_now = GetRunningTime()
-	local current_loop_time = (temp_engage_now -_element_end_times[_aim_element_index] )%(element_ring_per_loop_ms)
-	if current_loop_time< hr_start_spell_list_window[2] then
-		OutputLogMessage("________function demo_engage_hr_48s_loop  current_loop_time< hr_start_spell_list_window[2]\n")
-		if current_loop_time< hr_start_spell_list_window[1] then
-			OutputLogMessage("________function demo_engage_hr_48s_loop  current_loop_time< hr_start_spell_list_window[1]\n")
-			if not keep_cast_skill_to_time(hr_start_spell_list_window[1] - current_loop_time + temp_engage_now ) then
-				continue_key = nil
-				return false
-			end
-		end
-	else
-		OutputLogMessage("________function demo_engage_hr_48s_loop  else mode\n")
-		if not keep_cast_skill_to_time( element_ring_per_loop_ms - current_loop_time + hr_start_spell_list_window[1] + temp_engage_now  ) then
-				continue_key = nil
-				return false
-		end
+	if xl > screen_x_cast_spell_range[2] then
+		xl = screen_x_cast_spell_range[2]
 	end
-	OutputLogMessage("________function demo_engage_hr_48s_loop  casting loop_hr_1\n")
-	if not cast_spell_in_array(loop_hr_1) then
-		continue_key = nil
-		return false
+	if yl < screen_y_cast_spell_range[1] then
+		yl = screen_y_cast_spell_range[1]
 	end
-	try_msg({"hr","now","20s","go","next"})
-	_last_status = {status=1,timestamp=GetRunningTime()}
-	return hr_lv2()
+	if yl > screen_y_cast_spell_range[2] then
+		yl = screen_y_cast_spell_range[2]
+	end
+	MoveMouseTo(xl,yl)
 end
 
-function hr_lv2() --黑人持续时间 持续释放1技能
-	local hr_sdcj_cost_ms = cast_spell_cost_ms(skills.hr_sdcj)
-	local temp_engage_now = GetRunningTime()
-	if temp_engage_now < _last_status.timestamp + hr_last_time_ms then
-		local cast_times_hr_sdcj = math.floor((_last_status.timestamp + hr_last_time_ms - temp_engage_now) / hr_sdcj_cost_ms) --math.floor(30.1) = 30 math.ceil(30.1) = 31
-		OutputLogMessage("________function hr_lv2 ：cast_times_hr_sdcj  %d TIMES \n ",cast_times_hr_sdcj)
-		local cast_array = {{skill_cast=skills.hr_sdcj,cast_time = cast_times_hr_sdcj}}
-		if not cast_spell_in_array(cast_array) then
-			continue_key = nil
-		return false
-		end
-	end
-	
-	_last_status = {status=2,timestamp=(_last_status.timestamp + hr_last_time_ms)}
-	return hr_lv3mins()
-end
- _time_for_walk_to_shenmu = 1000 --走神木圈给与时间
----为变身后的黑人元素戒内输出产出神木圈
-function hr_lv3mins()
-	local loop_hr_lv3_mins = loop_after_hr_create_shenmu()
-	if _hr_lv3_window_grap == nil then 
-		local hr_lv3_cost_time_info = cast_spell_in_array_cost_time(loop_hr_lv3_mins)
-		local loop_hr_2 = loop_after_hr()
-		local hr_final_spell_list_window = window_grap_by_spell_list(loop_hr_2)  --{8497 , 8844}   ---7106.0 ,3553.0 ,3553.0
-		
-		local big_loop_time_info = {
-					whole_time_ms=16*1000,--循环总时间
-					element_wanna_range={hr_final_spell_list_window[1] - _time_for_walk_to_shenmu 
-					,hr_final_spell_list_window[2] - _time_for_walk_to_shenmu }--需要元素时间范围窗口
-				}
-		local spell_cost_ms_info = {
-					total_time_ms=hr_lv3_cost_time_info[1],--输出总时间MS
-					not_in_element_cost = hr_lv3_cost_time_info[2], --非元素周期内招式时间ms
-					in_element_cost = hr_lv3_cost_time_info[3] -- 元素周期内招式时间 ms
-				}
-		_hr_lv3_window_grap = window_grap(big_loop_time_info,spell_cost_ms_info,_unvalid_element_ms)
-	end	
-	
-	local temp_engage_now = GetRunningTime()
-	if temp_engage_now - _last_status.timestamp >= _hr_lv3_window_grap[2] then
-		OutputLogMessage("________function hr_lv3mins  hr last time  over  return  to hr_lv3 \n")
-		return hr_lv3()
-	end
-	
-	local current_loop_time = (temp_engage_now -_element_end_times[_aim_element_index] )%(element_ring_per_loop_ms)
-	if current_loop_time< _hr_lv3_window_grap[2] then
-		if current_loop_time< _hr_lv3_window_grap[1] then
-			if not keep_cast_skill_to_time(_hr_lv3_window_grap[1] - current_loop_time + temp_engage_now ) then
-				continue_key = nil
-				return false
-			end
-		end
-	end
-	if not cast_spell_in_array(loop_hr_lv3_mins) then
-		continue_key = nil
-		return false
-	end
-	try_msg({"going","to","shenmu","quan","need","help"})
-	_last_status = {status=3,timestamp=GetRunningTime()}
-	return hr_lv3()
-end
 
-function hr_lv3() --黑人结束BUFF部分输出时间
-	local loop_hr_2 = loop_after_hr()
-	local hr_final_spell_list_window = window_grap_by_spell_list(loop_hr_2)
-	
-	local temp_engage_now = GetRunningTime()
-	if not check_cds(loop_hr_2,temp_engage_now) then ---useful? my ass
-		continue_key = nil
-		return false
-	end
-	if temp_engage_now - _last_status.timestamp >= hr_final_spell_list_window[2] then
-		OutputLogMessage("________function hr_lv3  hr last time  over  return  to hr_lv1 \n")
-		return hr_lv1(false)
-	end --temp_engage_now - _last_status.timestamp
-	--OutputLogMessage("________function hr_lv3  WINDOW garp b : %d ,after : %d \n",hr_final_spell_list_window[1],hr_final_spell_list_window[2])
-	local current_loop_time = (temp_engage_now -_element_end_times[_aim_element_index] )%(element_ring_per_loop_ms)
-	if current_loop_time < hr_final_spell_list_window[2] then
-		if current_loop_time< hr_final_spell_list_window[1] then
-			if not Sleep_to(hr_final_spell_list_window[1] - current_loop_time + temp_engage_now ) then
-				continue_key = nil
-				return false
-			end
-		end
-	else
-		OutputLogMessage("________function demo_engage_hr_48s_loop shouldn't see this message this can be happen the second ys start time can't over window!\n")
-		continue_key = nil
-		return false
-		--if not keep_cast_skill_to_time( element_ring_per_loop_ms - current_loop_time + temp_engage_now ) then
-		--		OutputLogMessage("________function demo_engage_hr_48s_loop shouldn't see this message this can be happen the second ys start time can't over window!\n")
-		--		continue_key = nil
-		--		return false
-		--end
-	end
-	--OutputLogMessage("________function demo_engage_hr_48s_loop  casting loop_hr_2\n")
-	if not cast_spell_in_array(loop_hr_2) then
-		continue_key = nil
-		return false
-	end
-	_last_status = {status=4,timestamp=GetRunningTime()}
+corns_position = {{0,0},{65535,65535},{65535,0},{0,65535}}
+function doage_position() --躲避侧移获取应到位置
+	x_mouse_temp,y_mouse_temp = test_function_getMOUSEPOs()
+	local x_delta = x_mouse_temp - player_position[1]
+	local y_delta = y_mouse_temp - player_position[2]
+
+	local x_delta_abs = math.abs(x_delta)
+	local y_delta_abs = math.abs(y_delta)
+	local y_telport_abs = math.sqrt((_max_telport_distance^2)/(x_delta_abs^2/y_delta_abs^2+1))
+	local x_telport_abs = x_delta_abs/y_delta_abs * y_telport_abs
+	local y_telport = y_telport_abs * -1 * y_delta/y_delta_abs
+	local x_telport = x_telport_abs * -1 * x_delta/x_delta_abs
+	cast_spell_move_mouse_to(player_position[1]+x_telport,player_position[2]+y_telport)
+	----OutputLogMessage("function doage_position: return x: %.1f,y %.1f\n",(player_position[1]+x_delta_abs+x_telport_abs)*(x_delta/x_delta_abs),player_position[2]+(y_delta_abs+y_telport_abs)*(y_delta/y_delta_abs))
+	_mouse_return_pos = {x_mouse_temp,y_mouse_temp} --鼠标移回位置
 	return true
 end
 
-function demo_engage_hr_48s_loop()
-	if _element_end_times ~= nil and _element_end_times[_aim_element_index] ~= nil then
-		if _last_status == nil then
-			return hr_lv1(true)
-		elseif _last_status.status == 1 then
-			return hr_lv2()
-		elseif _last_status.status == 2 then
-			return hr_lv3mins()
-		elseif _last_status.status == 3 then
-			return hr_lv3()
-		elseif _last_status.status == 4 then
-			return hr_lv1(false)
-		else
-			OutputLogMessage("________function demo_engage_hr_48s_loop shouldn't see this message this can be happen _last_status is unknow type %s  %d !\n",type(_last_status.status),_last_status.status)
-		end
-	end
-	return false
+function return_mouse() --鼠标返回
+	cast_spell_move_mouse_to(_mouse_return_pos[1],_mouse_return_pos[2])
+	return true
 end
 
-function demo_engage_hr_48s()
+
+--gouyu		3451.0 ,3162.0 ,289.0 
+--normal	3876.0 ,3553.0 ,323.0 
+function test_loop()
+	local cast_array={
+	{skill_cast=skills.hd},
+	{skill_cast=skills.ylb},
+	{skill_cast=skills.dx,cast_time = 3}, -- 第一次 需要叠满5层buff
+	{skill_cast=skills.ys},
+	{skill_cast=skills.dx,cast_time = 2},
+	{skill_cast=skills.bssx,in_element = true}
+	}
+	
+	return cast_array
+end
+
+--gouyu		4029.0 ,4029.0 ,0.0  
+--normal	4522.0 ,4522.0 ,0.0  
+function test_first_loop()
+	local cast_array={
+	{skill_cast=skills.hd},
+	{skill_cast=skills.ylb},
+	{skill_cast=skills.dx,cast_time = 5}, -- 第一次 需要叠满5层buff
+	{skill_cast=skills.ys},
+	{skill_cast=skills.dx,cast_time = 2},
+	{skill_cast=skills.bssx,pre_function=doage_position,post_function=return_mouse}
+	}
+	return cast_array
+end
+
+--gouyu		3754.4 ,3754.4 ,0.0  
+--normal	4215.1 ,4215.1 ,0.0  
+
+function test_hr_loop()
+	local cast_array={
+	{skill_cast=skills.hd},
+	{skill_cast=skills.ylb},
+	{skill_cast=skills.dx,cast_time = 3}, -- 第一次 需要叠满5层buff
+	{skill_cast=skills.ys},
+	{skill_cast=skills.dx,cast_time = 2},
+	{skill_cast=skills.bssx,pre_function=doage_position,post_function=return_mouse,frame_percent_channeling=0.05},
+	{skill_cast=skills.hr}
+	}
+	return cast_array
+end
+
+
+
+--gouyu		3451.0 ,3451.0 ,0.0  
+--normal	3876.0 ,3876.0 ,0.0  
+function	create_shenmu() 
+	local cast_array={
+	{skill_cast=skills.hd},
+	{skill_cast=skills.ylb},
+	{skill_cast=skills.dx,cast_time = 3}, 
+	{skill_cast=skills.ys},
+	{skill_cast=skills.dx,cast_time = 2},
+	{skill_cast=skills.bssx,pre_function=doage_position,post_function=return_mouse}
+	}
+	return cast_array
+end
+
+--gouyu		3754.4 ,3162.0 ,592.5  
+--normal	4215.1 ,3553.0 ,662.1 
+function hr_loop()
+	local cast_array={
+	{skill_cast=skills.hd},
+	{skill_cast=skills.ylb},
+	{skill_cast=skills.dx,cast_time = 3},
+	{skill_cast=skills.ys},
+	{skill_cast=skills.dx,cast_time = 2},
+	{skill_cast=skills.bssx,pre_function=doage_position,post_function=return_mouse,frame_percent_channeling=0.05,in_element=true},
+	{skill_cast=skills.hr,in_element=true}
+	}
+	return cast_array
+end
+
+
+function hr_keep_gouyu()
+	local to_time = skills.hr._last_hit_time + hr_last_time_ms
+	OutputLogMessage("________function hr_keep_gouyu to_time %d\n ",to_time)
+	return keep_cast_skill_to_time(to_time,skills.hr_sdcj)
+end
+
+
+function hr_during_loop()
+	local cast_array={
+	{skill_cast=nil,pre_function=hr_keep_gouyu,post_function=nil}
+	}
+	return cast_array
+end
+
+
+function ao_yun_spells_info()
+	local 	loop_info = {}
+	local	total_info_l	= {	last_status	= -1,	timestamp	= nil,default_spell_index	= 1}
+	local	spells_info_l	= {}
+	spells_info_l[1]	=	{spell_array =	create_shenmu(),
+	ahead_next_funtion_time	=	_time_for_walk_to_shenmu ,
+	priority	= 5,
+	status	=	1 ,
+	last_status_must_be =	nil,
+	can_be_cast_method = nil,
+	msg	=	{"shenmu","in","-1"}
+	}
+	
+	spells_info_l[2] = {spell_array = hr_loop(),
+	ahead_next_funtion_time = 0 ,
+	priority = 2,
+	status = 2 ,
+	last_status_must_be = nil,
+	can_be_cast_method = nil,
+	msg={"ys","in","-1"}
+	}
+	
+	spells_info_l[3] = {spell_array = hr_during_loop(),
+	ahead_next_funtion_time = 0 ,
+	priority	= 8,
+	status = 3 ,
+	last_status_must_be = 2,
+	can_be_cast_method = nil,
+	msg={"hr","in","-1"}
+	}
+	
+	loop_info.total_info	=	total_info_l
+	loop_info.spells_info	=	spells_info_l
+	loop_info.total_info.total_loop_time_ms	=	element_ring_per_loop_ms
+	init_window_info(loop_info)
+	return loop_info
+end
+
+function	init_window_info(loop_info)
+	local spells_info = loop_info.spells_info
+	for i=1,#(spells_info) do 
+		spells_info[i].spell_cost_time_info	=	cast_spell_in_array_cost_time(spells_info[i].spell_array)
+		if spells_info[i].ahead_next_funtion_time ~= 0 and spells_info[i+1] ~= nil  then
+			local next_spell_window = window_grap_by_spell_list(spells_info[i+1].spell_array)
+			spells_info[i+1].window_info = next_spell_window
+			local big_loop_time_info = {
+						whole_time_ms=element_ring_per_loop_ms,--循环总时间 unused
+						element_wanna_range={spells_info[i+1].window_info[1] - spells_info[i].ahead_next_funtion_time
+						,spells_info[i+1].window_info[2] - spells_info[i].ahead_next_funtion_time }--需要元素时间范围窗口
+					}
+			local spell_cost_ms_info = {
+						total_time_ms=spells_info[i].spell_cost_time_info[1],--输出总时间MS
+						not_in_element_cost = spells_info[i].spell_cost_time_info[2], --非元素周期内招式时间ms
+						in_element_cost = spells_info[i].spell_cost_time_info[3] -- 元素周期内招式时间 ms
+					}
+			local spell_window = window_grap(big_loop_time_info,spell_cost_ms_info,_unvalid_element_ms)
+			spells_info[i].window_info = spell_window
+		else
+			if spells_info[i].spell_cost_time_info[3] == 0 then
+				local spell_window = {0,element_ring_per_loop_ms}
+				spells_info[i].window_info = spell_window
+			else
+				spells_info[i].window_info =	window_grap_by_spell_list(spells_info[i].spell_array)
+			end
+		end
+	end
+end
+
+loop_info_now =	ao_yun_spells_info()
+_suit_times={} -- 各招式列表执行次数
+function engage()
+	local begin_t = GetRunningTime()
 	loop_times = 0
-	continue_key = "capslock" -- on  do nothing    off   cast spell
+	continue_key = "capslock"
 	local repeat_continue = true
 	repeat
-		repeat_continue = demo_engage_hr_48s_loop()
+		local now_time = GetRunningTime()
+		repeat_continue = cast_spell_function(loop_info_now)
 		loop_times = loop_times + 1
-		OutputLogMessage("________function demo_engage_hr_48s ：cast repeat tims %d \n ",loop_times)
+		--OutputLogMessage("________function engage ：continue_key %s\n ",type(continue_key))
+
+		--OutputLogMessage("________function engage ：cast repeat tims %d  TIME PASSED %.1f s1 times : %d s2 times %d\n ",loop_times,(now_time-begin_t)/16/1000,_suit_times[1],_suit_times[2])
     until (not repeat_continue)
 	continue_key = nil
+	return true
 end
+
+function cast_spell_function(loop_info)
+
+	local temp_engage_now	= GetRunningTime()
+	local current_loop_time	= (temp_engage_now -_element_end_times[_aim_element_index] )%(element_ring_per_loop_ms) 
+	local spells_info	= loop_info.spells_info
+	local ahead_short_suit_time	= loop_info.total_info.total_loop_time_ms
+	local suit_spells = nil
+	for i=1,#(spells_info) do 
+		if current_loop_time <=	spells_info[i].window_info[2] and ((spells_info[i].last_status_must_be ==nil) or (spells_info[i].last_status_must_be ~=nil and loop_info.total_info.last_status	== spells_info[i].last_status_must_be) ) then
+			OutputLogMessage("________function INDEX %d current_loop_time  %d ,spells_info[i].window_info[2] %d  \n",i,current_loop_time,spells_info[i].window_info[2])
+			if suit_spells == nil then
+				suit_spells	= i
+			elseif spells_info[i].priority	>	spells_info[suit_spells].priority then
+				suit_spells	= i
+			end
+		end
+	end
+	if suit_spells == nil then
+		suit_spells = loop_info.total_info.default_spell_index
+	end
+	if _suit_times[suit_spells] == nil then
+		_suit_times[suit_spells] =  1
+	else
+		_suit_times[suit_spells] = _suit_times[suit_spells] + 1
+	end
+	OutputLogMessage("________function cast_spell_function  suit i %d ,last status %d \n",suit_spells,loop_info.total_info.last_status)
+	if	current_loop_time	<	spells_info[suit_spells].window_info[2]	then
+		--OutputLogMessage("________function cast_spell_function  current_loop_time< spells_info[suit_spells].window_info[2]\n")
+		if current_loop_time <	spells_info[suit_spells].window_info[1]	then
+			--OutputLogMessage("________function cast_spell_function  current_loop_time < spells_info[suit_spells].window_info[2]\n")
+			if not	keep_cast_skill_to_time(spells_info[suit_spells].window_info[1] - current_loop_time + temp_engage_now ) then
+				--OutputLogMessage("________NIL   1111\n")
+				--continue_key = nil
+				return false
+			end
+		end
+	else
+		--OutputLogMessage("________function cast_spell_function  else mode NOW %d , sleep time %d\n",temp_engage_now,loop_info.total_info.total_loop_time_ms - current_loop_time + spells_info[suit_spells].window_info[1])
+		if not keep_cast_skill_to_time( loop_info.total_info.total_loop_time_ms - current_loop_time + spells_info[suit_spells].window_info[1] + temp_engage_now  ) then
+				--OutputLogMessage("________NIL   22222\n")
+				--continue_key = nil
+				return false
+		end
+	end
+	OutputLogMessage("________function cast_spell_function  casting spell_array\n")
+	if not cast_spell_in_array(spells_info[suit_spells].spell_array) then
+		--OutputLogMessage("________NIL   3333\n")
+		--continue_key = nil
+		return false
+	end
+	loop_info.total_info.last_status	= spells_info[suit_spells].status
+	loop_info.total_info.timestamp	= GetRunningTime()
+	OutputLogMessage("________function SELLP TIME %d\n",spells_info[suit_spells].ahead_next_funtion_time)
+	if not Sleep_current(spells_info[suit_spells].ahead_next_funtion_time) then
+		--OutputLogMessage("________NIL   44444\n")
+		--continue_key = nil
+		return false
+	end
+	return true
+end
+
+function	require_circumstance()
+
+end
+
 
 function release_all_contrl_unit()
 	if IsKeyLockOn("capslock") then
@@ -777,51 +942,15 @@ function aim_element_end (aim_index)  --对准元素结束时间
 	_element_end_times[aim_index] = GetRunningTime()
 	_element_end_times[_aim_element_index] = _element_end_times[aim_index] + (_aim_element_index - aim_index) * element_ring_per_element_ms
 	release_all_contrl_unit()
-	if not demo_engage_hr_48s()then
-		OutputLogMessage("demo_engage_hr_48s false\n")
+	if not engage()then
+		OutputLogMessage("engage false\n")
 	end
 	OutputLogMessage("------function aim_element_end over\n")
 end
 
---[[
-	function window_grap 计算 窗口时间
-	@ParamInfo
-		big_loop_time_info  循环 信息  
-			exp: 
-			{
-				whole_time_ms=16*1000,--循环总时间
-				element_wanna_range={12*1000,16*1000}--需要元素时间范围窗口
-			}
-		spell_cost_ms_info --输出招式 时间 
-			exp:
-			{
-				total_time_ms=3893,--输出总时间MS
-				not_in_element_cost = 3570, --非元素周期内招式时间ms
-				in_element_cost = 323 -- 元素周期内招式时间 ms
-			}
-		mini_grap_before_element_end_ms 需要元素时间范围窗口 最后无效时间（ms） --避免对元素误差导致最后元素周期内招式脱离元素周期释放 exp ：100 
-		
-	
-	@Return value
-		type : table
-		exp: {1200,1400}
-		des: {可进入的最早时间，可进入的最晚时间}
---]]
-function window_grap(big_loop_time_info,spell_cost_ms_info,mini_grap_before_element_end_ms)--计算时间窗口
-	local early_time = big_loop_time_info.element_wanna_range[1] + mini_grap_before_element_end_ms + spell_cost_ms_info.in_element_cost - spell_cost_ms_info.total_time_ms
-	local end_time = big_loop_time_info.element_wanna_range[2] - mini_grap_before_element_end_ms - spell_cost_ms_info.total_time_ms
-	print (string.format("window grap : {%d , %d} \n ",early_time,end_time))
-	return {early_time,end_time}
-end
-
-function window_grap_by_spell_list(cast_spell_list)--计算时间窗口
-	local spell_list_cast_time_info = cast_spell_in_array_cost_time(cast_spell_list)
-	local cost_ms_info_table = {total_time_ms=spell_list_cast_time_info[1],not_in_element_cost = spell_list_cast_time_info[2],in_element_cost = spell_list_cast_time_info[3]}
-	return window_grap(_big_loop_time_info,cost_ms_info_table,_unvalid_element_ms)
-end
 
 
-function init_funtion()
+function	init_funtion()
 	if not _init then  
 		for i,v in pairs (default_skills.default_false_channeling)do --获取初始化键值对中的键，用于后续重置工作
 			table.insert(_skill_init_name, i)
@@ -846,6 +975,7 @@ function init_funtion()
 			end
 			skills[i_o].hotkey = v_o
 		end
+		engage_loop_time_use_element_ring_circle_time() --计算循环时间
 		_init = true
 	end
 end
@@ -883,113 +1013,7 @@ function cast_spell_in_array_cds_at_least_wait_time(spell_array,now_time)  --带
 end
 
 
---[[
-	陨石输出基本循环  
-	无勾玉情况下 一套需要4500-4600 ms 时间 即4.5-4.6秒 详细时间为 4.53-4.56范围内
-	满勾玉 4.04 -4.06
---]]
-function cast_spell_in_array_cost_time(spell_array)
-	local cost_time_all = 0
-	local not_in_element_cost = 0 
-	local element_cost = 0
-	for index,spell_info in ipairs(spell_array) do
-		local skill_cast = spell_info.skill_cast
-		local cast_time = 1
-		if spell_info.cast_time~=nil then
-			cast_time = spell_info.cast_time
-		end
-		local frame_percent_channeling = 1.0
-		if spell_info.frame_percent_channeling~=nil then
-			frame_percent_channeling = spell_info.frame_percent_channeling
-		end
-		local cost_time = cast_spell_cost_ms(skill_cast,cast_time,frame_percent_channeling)
-		cost_time_all = cost_time_all + cost_time
-		if (spell_info.in_element ~= nil and spell_info.in_element) then
-			----OutputLogMessage("function cast_spell_in_array_cost_time: skill_cast.in_element\n")
-			element_cost = element_cost + cost_time
-		else
-			not_in_element_cost = not_in_element_cost + cost_time
-		end
-		----OutputLogMessage("function cast_spell_in_array_cost_time:skill name  %s , cast time %d ,percent %.2f cost time %.1f cost_time_all %.1f\n",skill_cast.name,cast_time,frame_percent_channeling,cost_time,cost_time_all)
-		print (string.format("function cast_spell_in_array_cost_time:skill name  %s , cast time %d ,percent %.2f cost time %.1f cost_time_all %.1f\n",skill_cast.name,cast_time,frame_percent_channeling,cost_time,cost_time_all))
-		
-	end
-	----OutputLogMessage("function cast_spell_in_array_cost_time: cost time all %.1f\n",cost_time_all)
-	print (string.format("function cast_spell_in_array_cost_time: cost time all %.1f\n",cost_time_all))
-	return {cost_time_all,not_in_element_cost,element_cost}
-end
 
-function cast_spell_in_array(spell_array)
-	if not _cast_spell_in_array then 
-		_cast_spell_in_array = true
-		for index,spell_info  in ipairs(spell_array) do
-			if spell_info.pre_function ~= nil then
-				--OutputLogMessage(" function cast_spell_in_array : type(pre_function)  %s ",type(pre_function))
-				spell_info.pre_function()
-			end
-			local skill_cast = spell_info.skill_cast
-			local cast_time = 1
-			if spell_info.cast_time~=nil then
-				cast_time = spell_info.cast_time
-			end
-			local frame_percent_channeling = 1.0
-			if spell_info.frame_percent_channeling~=nil then
-				frame_percent_channeling = spell_info.frame_percent_channeling
-			end
-			------OutputLogMessage("function cast_spell_in_array: skill_cast cost time %.1f\n",spell_info.cost_time_ms)
-			if not cast_spell(skill_cast,cast_time,frame_percent_channeling) then
-				------OutputLogMessage("function cast_spell_in_array: cast_spell false\n")
-				_cast_spell_in_array = false
-				return false
-			end
-			if spell_info.post_function ~= nil then
-				spell_info.post_function()
-			end
-			------OutputLogMessage("function cast_spell_in_array: cast_spell true\n")
-		end
-		_cast_spell_in_array = false
-		return true
-	end
-	return false
-end
-
-function cast_spell_move_mouse_to(x,y)
-	local xl = x
-	local yl = y
-	if xl < screen_x_cast_spell_range[1] then
-		xl = screen_x_cast_spell_range[1]
-	end
-	if xl > screen_x_cast_spell_range[2] then
-		xl = screen_x_cast_spell_range[2]
-	end
-	if yl < screen_y_cast_spell_range[1] then
-		yl = screen_y_cast_spell_range[1]
-	end
-	if yl > screen_y_cast_spell_range[2] then
-		yl = screen_y_cast_spell_range[2]
-	end
-	MoveMouseTo(xl,yl)
-end
-
-function doage_position() --躲避侧移获取应到位置
-	x_mouse_temp,y_mouse_temp = test_function_getMOUSEPOs()
-	local x_delta = x_mouse_temp - player_position[1]
-	local y_delta = y_mouse_temp - player_position[2]
-
-	local x_delta_abs = math.abs(x_delta)
-	local y_delta_abs = math.abs(y_delta)
-	local y_telport_abs = math.sqrt((_max_telport_distance^2)/(x_delta_abs^2/y_delta_abs^2+1))
-	local x_telport_abs = x_delta_abs/y_delta_abs * y_telport_abs
-	local y_telport = y_telport_abs * -1 * y_delta/y_delta_abs
-	local x_telport = x_telport_abs * -1 * x_delta/x_delta_abs
-	MoveMouseTo(player_position[1]+x_telport,player_position[2]+y_telport)
-	----OutputLogMessage("function doage_position: return x: %.1f,y %.1f\n",(player_position[1]+x_delta_abs+x_telport_abs)*(x_delta/x_delta_abs),player_position[2]+(y_delta_abs+y_telport_abs)*(y_delta/y_delta_abs))
-	_mouse_return_pos = {player_position[1]+(x_delta_abs+x_telport_abs)*(x_delta/x_delta_abs),player_position[2]+(y_delta_abs+y_telport_abs)*(y_delta/y_delta_abs)} --鼠标移回位置
-end
-
-function return_mouse() --鼠标返回
-	cast_spell_move_mouse_to(_mouse_return_pos[1],_mouse_return_pos[2])
-end
 
 
 --------测试方法---------test functions
@@ -1008,7 +1032,7 @@ function test_cast(cast_s)
 end
 function test_function_getMOUSEPOs()--获取鼠标当前X,Y位置
 	x,y = GetMousePosition()
-	--OutputLogMessage("__mouse pos x: %d y: %d  \n",x,y)
+	OutputLogMessage("__mouse pos x: %d y: %d  \n",x,y)
 	return x,y
 end
 
@@ -1020,7 +1044,7 @@ end
 
 function OnEvent(event, arg,family)
 	if(not EnableM1 and event == "PROFILE_ACTIVATED")then  --鼠标左键单击也要被被此方法捕捉
-		EnablePrimaryMouseButtonEvents(1);
+		EnablePrimaryMouseButtonEvents(1)
 		EnableM1 = true
 	end
 	if (not IsKeyLockOn(auto_switch_hotKey)) then
@@ -1030,6 +1054,7 @@ function OnEvent(event, arg,family)
 			OutputLogMessage("Log cleared!--\n")
 		end 
 		if (event == screen_position_hotkey[1] and arg == screen_position_hotkey[2])then
+			test_cast(test_hr_loop())
 			test_function_getMOUSEPOs()
 		end 
 		if (event == macro_start_up[1] and arg == macro_start_up[2] ) then --启动宏
@@ -1045,7 +1070,7 @@ function OnEvent(event, arg,family)
 		--]]
 		--test_cast(loop_after_hr())
 			release_all_contrl_unit()
-			demo_engage_hr_48s()
+			engage()
 		end
 	end
 	if (event == macro_aim_element_ao[1] and arg == macro_aim_element_ao[2] ) then --对奥元素
