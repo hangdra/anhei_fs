@@ -5,6 +5,8 @@ auto_switch_hotKey = "numlock" -- 脚本是否处于待机可执行状态 numboc
 auto_switch_hotkey2 = "capslock" -- 脚本施法动作可执行状态 capslock 大小写锁定键 （点亮为 取消执行）
 force_stand_hotkey = "spacebar"  --强制站立按键 （其他可选 alt ，ctrl，shift）
 warm_up_hotkey = "ctrl"  --冷启动快捷键用于在怪堆中叠加勾玉 默认使用技能源力波
+unwarm_up_hotkey = "alt"  --冷启动快捷键用于在怪堆中叠加勾玉 默认使用技能源力波
+
 macro_start_up = {"MOUSE_BUTTON_PRESSED" , 5} 
 macro_aim_element_ao = {"MOUSE_BUTTON_PRESSED" , 4} 
 screen_position_hotkey =  {"G_PRESSED",7}--G2(F7)获取鼠标所在屏幕位置
@@ -954,29 +956,29 @@ function search_for_more_suit(suit_now,loop_info)
 		end
 	end
 	local spell_array_cd_all_ready_time_suit_spell = cast_spell_in_array_cds_at_least_wait_time_to_cd_already(spells_info[suit_spells].spell_array)
-	
+	local loop_time_start = get_loop_first_time(temp_engage_now)
 	for i=1,#(spells_info) do 
 		if i ~= suit_spells and spells_info[i].priority > spells_info[suit_spells].priority then
-			----OutputLogMessage("________function search_for_more_suit init   I %d  MAY BE BETTER THEN suit_spells %d  ----------------------------------------------\n",i,suit_spells)
+			OutputLogMessage("________function search_for_more_suit init   I %d  MAY BE BETTER THEN suit_spells %d  ----------------------------------------------\n",i,suit_spells)
 			local spell_array_cd_all_ready_time_i = cast_spell_in_array_cds_at_least_wait_time_to_cd_already(spells_info[i].spell_array)
-			if spell_array_cd_all_ready_time_i < get_loop_first_time(temp_engage_now) + spells_info[i].window_info[2] then  --确保技能CD 时间 转好在窗口时间内
-			--[[
-			if spells_info[i].can_be_cast_method() then
-				--OutputLogMessage("________1\n")
-			end
-			if spell_array_cd_all_ready_time_i < spells_info[i].window_info[2] then
-				--OutputLogMessage("________2\n")		
-			end
-			if ((spells_info[i].last_status_must_be ==nil) or (spells_info[i].last_status_must_be ~=nil and loop_info.total_info.last_status == spells_info[i].last_status_must_be) )  then
-				--OutputLogMessage("________3\n")		
-			end
-			if ((spells_info[i].can_be_cast_method() ~= spells_info[suit_spells].can_be_cast_method()) or (suit_spells_may_cast_time_in_loop + spells_info[suit_spells].spell_cost_time_info[1] +spells_info[suit_spells].ahead_next_funtion_time >= spells_info[i].window_info[2]) or (suit_spells_may_cast_time_in_loop >= spells_info[i].window_info[1]) )  then
-				--OutputLogMessage("________4\n")		
-			end
-			--]]
+			if spell_array_cd_all_ready_time_i < loop_time_start + spells_info[i].window_info[2] then  --确保技能CD 时间 转好在窗口时间内
+			--[[ --]]
+				if spells_info[i].can_be_cast_method() then
+					OutputLogMessage("________1\n")
+				end
+
+				if ((spells_info[i].last_status_must_be ==nil) or (spells_info[i].last_status_must_be ~=nil and loop_info.total_info.last_status == spells_info[i].last_status_must_be) ) then
+					OutputLogMessage("________2\n")		
+				end
+				if ((spell_array_cd_all_ready_time_suit_spell + spells_info[suit_spells].spell_cost_time_info[1] +spells_info[suit_spells].ahead_next_funtion_time >= loop_time_start + spells_info[i].window_info[2])) then
+					OutputLogMessage("________3\n")		
+				end
+				if ( (spell_array_cd_all_ready_time_suit_spell >= loop_time_start +  spells_info[i].window_info[1]) ) then
+					OutputLogMessage("________4\n")		
+				end
 				if spells_info[i].can_be_cast_method()
 				and ((spells_info[i].last_status_must_be ==nil) or (spells_info[i].last_status_must_be ~=nil and loop_info.total_info.last_status == spells_info[i].last_status_must_be) ) 
-				and ((spell_array_cd_all_ready_time_suit_spell + spells_info[suit_spells].spell_cost_time_info[1] +spells_info[suit_spells].ahead_next_funtion_time >= spells_info[i].window_info[2]) or (spell_array_cd_all_ready_time_suit_spell >= spells_info[i].window_info[1]) ) 
+				and ((spell_array_cd_all_ready_time_suit_spell + spells_info[suit_spells].spell_cost_time_info[1] +spells_info[suit_spells].ahead_next_funtion_time >= loop_time_start + spells_info[i].window_info[2]) or (spell_array_cd_all_ready_time_suit_spell >= loop_time_start + spells_info[i].window_info[1]) ) 
 				then
 					return search_for_more_suit(i,loop_info)
 				end
@@ -992,7 +994,7 @@ function cast_spell_function(loop_info)
 	local spells_info	= loop_info.spells_info
 	local suit_spells = search_for_more_suit(nil,loop_info)
 
-	--OutputLogMessage("________function cast_spell_function  suit i %d ,last status %d ----------------------------------------------\n",suit_spells,loop_info.total_info.last_status)
+	OutputLogMessage("________function cast_spell_function  suit i %d ,last status %d ----------------------------------------------\n",suit_spells,loop_info.total_info.last_status)
 
 	if 	loop_info.total_info.last_status == 1 and suit_spells ~= 2 then
 	
@@ -1308,8 +1310,13 @@ function OnEvent(event, arg,family)
 			if IsModifierPressed(warm_up_hotkey) then
 				init_gouyu_zero_info()
 				_warm_up = true
+				skills.hr._last_hit_time = nil
 			--else 
 			--	_warm_up = false
+			end
+			
+			if IsModifierPressed(unwarm_up_hotkey) then
+				_warm_up = false
 			end
 			engage()
 			continue_key = nil

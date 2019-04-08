@@ -5,6 +5,7 @@ auto_switch_hotKey = "numlock" -- 脚本是否处于待机可执行状态 numboc
 auto_switch_hotkey2 = "capslock" -- 脚本施法动作可执行状态 capslock 大小写锁定键 （点亮为 取消执行）
 force_stand_hotkey = "spacebar"  --强制站立按键 （其他可选 alt ，ctrl，shift）
 warm_up_hotkey = "ctrl"  --冷启动快捷键用于在怪堆中叠加勾玉 默认使用技能源力波
+unwarm_up_hotkey = "alt"  --冷启动快捷键用于在怪堆中叠加勾玉 默认使用技能源力波
 macro_start_up = {"MOUSE_BUTTON_PRESSED" , 5} 
 macro_aim_element_ao = {"MOUSE_BUTTON_PRESSED" , 4} 
 screen_position_hotkey =  {"G_PRESSED",7}--G2(F7)获取鼠标所在屏幕位置
@@ -284,8 +285,8 @@ end
 	channeling_time:释放技能持续时间
 --]]
 function cast_spell(skill,cast_time,frame_percent_channeling) --释放技能 
-	----OutputLogMessage("________function cast_spell : casting skill %s\n",(skill["hotkey"]))
-	----OutputLogMessage("________function cast_spell :casting skill %s, using time %d \n",skill.hotkey,channeling_time)
+	------OutputLogMessage("________function cast_spell : casting skill %s\n",(skill["hotkey"]))
+	------OutputLogMessage("________function cast_spell :casting skill %s, using time %d \n",skill.hotkey,channeling_time)
 	
 	if skill.channeling then
 		hot_key_press(skill.hotkey)
@@ -302,25 +303,25 @@ function cast_spell(skill,cast_time,frame_percent_channeling) --释放技能
 	else
 		for i=1,cast_time do
 			hot_key_PressAndRelease(skill.hotkey)
+			skill._last_hit_time = (GetRunningTime())
 			if gem_xunjiegouyu then
 				getCd(skill)
 			end
-			skill._last_hit_time = (GetRunningTime())
-			--OutputLogMessage("________here u are cast_spell over(skill " .. skill.hotkey.."\n")
+			----OutputLogMessage("________here u are cast_spell over(skill " .. skill.hotkey.."\n")
 			local sleep_time = skill.frames[get_gem_gouyu_buff_level() + 1] * _per_frame_ms
 			if i == cast_time then
 				sleep_time = sleep_time * frame_percent_channeling
 			end
 			if not Sleep_current(sleep_time) then
-				----OutputLogMessage("________function cast_spell Sleep_current false \n")
+				------OutputLogMessage("________function cast_spell Sleep_current false \n")
 				return false
 			end
+			skill._last_hit_time = (GetRunningTime())
 		end
 	end
 	--local end_time = (GetRunningTime())
 	return true
 end
-
 
 function cast_spell_in_array(spell_array)
 		for index,spell_info  in ipairs(spell_array) do
@@ -1268,6 +1269,12 @@ function OnEvent(event, arg,family)
 				_start_mark = nil
 				skills.hr._last_hit_time = nil
 			end
+			
+			
+			if IsModifierPressed(unwarm_up_hotkey) then
+				_warm_up = false
+			end
+			
 			if not engage() then
 				OutputLogMessage("engage false end\n")
 			else
